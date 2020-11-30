@@ -26,7 +26,7 @@ public class SimpleEmailServiceTest {
     @Test
     public void shouldSendEmail(){
         //Given
-        Mail mail = new Mail("didn9@wp.pl", "Test", "Test message", "test@test.com");
+        Mail mail = new Mail("didn9@wp.pl", "Test", "Test message", "");
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());

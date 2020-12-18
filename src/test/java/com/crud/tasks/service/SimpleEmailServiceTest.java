@@ -16,7 +16,6 @@ import static org.mockito.Mockito.times;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SimpleEmailServiceTest {
-
     @InjectMocks
     private SimpleEmailService simpleEmailService;
 

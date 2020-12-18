@@ -11,5 +11,4 @@ public class AdminConfig {
 
     @Value("${admin.mail}")
     private String adminMail;
-
 }

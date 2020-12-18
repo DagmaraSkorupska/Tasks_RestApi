@@ -21,8 +21,7 @@ public class EmailScheduler {
     private AdminConfig adminConfig;
 
     private static final String SUBJECT = "Tasks: Once a day email";
-    private static final String ONETASK = "Currently in database you got one task";
-    private static final String MANYTASK = "Currently number of tasks in your database: ";
+    private static final String TASK = "Currently in your database u got: ";
 
     //@Scheduled(cron = "0 0 10 * * *")
     @Scheduled(fixedDelay = 10000)
@@ -36,8 +35,8 @@ public class EmailScheduler {
 
     private String formatMessage(long size){
         if( size == 1){
-            return ONETASK;
+            return TASK + size +" task";
         }
-        return MANYTASK + size;
+        return TASK + size + " tasks";
     }
 }

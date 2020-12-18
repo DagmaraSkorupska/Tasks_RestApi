@@ -21,17 +21,23 @@ public class EmailScheduler {
     private AdminConfig adminConfig;
 
     private static final String SUBJECT = "Tasks: Once a day email";
+    private static final String ONETASK = "Currently in database you got one task";
+    private static final String MANYTASK = "Currently number of tasks in your database: ";
 
     //@Scheduled(cron = "0 0 10 * * *")
     @Scheduled(fixedDelay = 10000)
     private void sendInformationEmail(){
+        simpleEmailService.send(prepareMail());
+    }
+    private Mail prepareMail(){
         long size = taskRepository.count();
-        if(size == 1){
-            simpleEmailService.send(new Mail(adminConfig.getAdminMail(), SUBJECT,
-                    "Currently in database you got: " + size + " task", null));
-        } else {
-            simpleEmailService.send(new Mail(adminConfig.getAdminMail(), SUBJECT,
-                    "Currently in database you got: " + size + " tasks", null));
+        return new Mail(adminConfig.getAdminMail(), SUBJECT, formatMessage(size), null);
+    }
+
+    private String formatMessage(long size){
+        if( size == 1){
+            return ONETASK;
         }
+        return MANYTASK + size;
     }
 }

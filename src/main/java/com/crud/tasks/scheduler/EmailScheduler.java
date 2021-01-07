@@ -24,7 +24,7 @@ public class EmailScheduler {
     private static final String TASK = "Currently in your database u got: ";
 
     //@Scheduled(cron = "0 0 10 * * *")
-    @Scheduled(fixedDelay = 10000)
+    //@Scheduled(fixedDelay = 10000)
     private void sendInformationEmail(){
         simpleEmailService.send(prepareMail());
     }

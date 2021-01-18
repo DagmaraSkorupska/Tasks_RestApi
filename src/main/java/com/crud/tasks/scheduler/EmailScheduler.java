@@ -23,11 +23,17 @@ public class EmailScheduler {
     private static final String SUBJECT = "Tasks: Once a day email";
     private static final String TASK = "Currently in your database u got: ";
 
-//    @Scheduled(cron = "0 0 10 * * *")
-    @Scheduled(fixedDelay = 10000)
+
+    //@Scheduled(fixedDelay = 10000)
     private void sendInformationEmail(){
         simpleEmailService.send(prepareMail());
     }
+
+    @Scheduled(cron = "0 0 10 * * *")
+    private void sendInformationEmailOnceDay(){
+        simpleEmailService.sendOnceADay(prepareMail());
+    }
+
     private Mail prepareMail(){
         long size = taskRepository.count();
         return new Mail(adminConfig.getAdminMail(), SUBJECT, formatMessage(size), null);
